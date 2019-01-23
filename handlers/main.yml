@@ -2,4 +2,4 @@
 - name: Restart HAProxy
   docker_container:
     name: haproxy
-    restart: yes
+    restart: true

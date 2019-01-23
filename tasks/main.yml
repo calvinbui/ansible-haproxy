@@ -19,7 +19,7 @@
     state: started
     restart_policy: unless-stopped
     published_ports:
-     - 80:80
-     - 443:443
+      - 80:80
+      - 443:443
     devices:
       - "{{ haproxy_docker_folder }}/haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg:ro"
