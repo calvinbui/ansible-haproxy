@@ -1,0 +1,25 @@
+---
+
+- name: Create HAProxy folder
+  file:
+    path: "{{ haproxy_docker_folder }}"
+    state: directory
+
+- name: Create HAProxy configuration
+  template:
+    src: haproxy.cfg.j2
+    dest: "{{ haproxy_docker_folder }}/haproxy.cfg"
+    validate: "docker run -it --rm haproxy:{{ haproxy_docker_image_tag }} haproxy -c -f {{ haproxy_docker_folder }}/haproxy.cfg"
+  notify: Restart HAProxy
+
+- name: Create HAProxy container
+  docker_container:
+    name: haproxy
+    image: "haproxy:{{ haproxy_docker_image_tag }}"
+    state: started
+    restart_policy: unless-stopped
+    published_ports:
+     - 80:80
+     - 443:443
+    devices:
+      - "{{ haproxy_docker_folder }}/haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg:ro"

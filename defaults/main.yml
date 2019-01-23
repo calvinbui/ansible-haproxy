@@ -1,0 +1,15 @@
+---
+
+haproxy_docker_image_tag: 1.9.2-alpine
+haproxy_docker_folder: /etc/haproxy
+haproxy_docker_config:
+  - name: mywebapp
+    frontend: example.com
+    frontend_port: 80
+    backend:
+      - 192.168.1.2:80
+  - name: mysecureapp
+    frontend: examples.com
+    frontend_port: 443
+    backend:
+      - 192.168.1.3:443
