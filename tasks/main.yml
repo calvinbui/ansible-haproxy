@@ -9,7 +9,7 @@
   template:
     src: haproxy.cfg.j2
     dest: "{{ haproxy_docker_folder }}/haproxy.cfg"
-    validate: "docker run -it --rm haproxy:{{ haproxy_docker_image_tag }} haproxy -c -f {{ haproxy_docker_folder }}/haproxy.cfg"
+    # validate: "docker run -it --rm haproxy:{{ haproxy_docker_image_tag }} haproxy -c -f %s"
   notify: Restart HAProxy
 
 - name: Create HAProxy container
