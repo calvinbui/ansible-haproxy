@@ -40,14 +40,14 @@ frontend fe-http-in
   bind *:80
   # Define hosts
   {% for config in haproxy_docker_config %}
-  {% if config.frontend_port = 80 %}
+  {% if config.frontend_port == 80 %}
   acl goto-{{ config.name }}  hdr(host) -i {{ config.frontend }}
   {% endif %}
   {% endfor %}
 
   ## figure out which one to use
   {% for config in haproxy_docker_config %}
-  {% if config.frontend_port = 80 %}
+  {% if config.frontend_port == 80 %}
   use_backend app-{{ config.name }} if {{ config.name }}
   {% endif %}
   {% endfor %}
@@ -56,14 +56,14 @@ frontend fe-https-in
   bind *:443
   # Define hosts
   {% for config in haproxy_docker_config %}
-  {% if config.frontend_port = 443 %}
+  {% if config.frontend_port == 443 %}
   acl goto-{{ config.name }}  hdr(host) -i {{ config.frontend }}
   {% endif %}
   {% endfor %}
 
   ## figure out which one to use
   {% for config in haproxy_docker_config %}
-  {% if config.frontend_port = 443 %}
+  {% if config.frontend_port == 443 %}
   use_backend app-{{ config.name }} if {{ config.name }}
   {% endif %}
   {% endfor %}
