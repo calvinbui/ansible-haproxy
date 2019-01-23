@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.com/calvinbui/ansible-haproxy.svg?branch=master)](https://travis-ci.com/calvinbui/ansible-haproxy)
+[![Build Status](https://travis-ci.com/calvinbui/ansible-haproxy-docker.svg?branch=master)](https://travis-ci.com/calvinbui/ansible-haproxy-docker)
 
 # Ansible HAProxy in Docker
 
