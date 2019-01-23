@@ -45,7 +45,7 @@ frontend fe-http-in
   ## figure out which one to use
   {% for config in haproxy_docker_config %}
   {% if config.frontend_port == 80 %}
-  use_backend app-{{ config.name }} if {{ config.name }}
+  use_backend app-{{ config.name }} if goto-{{ config.name }}
   {% endif %}
   {% endfor %}
 
@@ -61,7 +61,7 @@ frontend fe-https-in
   ## figure out which one to use
   {% for config in haproxy_docker_config %}
   {% if config.frontend_port == 443 %}
-  use_backend app-{{ config.name }} if {{ config.name }}
+  use_backend app-{{ config.name }} if goto-{{ config.name }}
   {% endif %}
   {% endfor %}
 
