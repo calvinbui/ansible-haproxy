@@ -21,6 +21,7 @@
   template:
     src: "{{ haproxy_config_template }}"
     dest: "{{ haproxy_config_directory }}/haproxy.cfg"
+  notify: Reload HAProxy
 
 - name: Create HAproxy container
   docker_container: "{{ haproxy_container_parameters | combine(haproxy_docker_additional_options) }}"

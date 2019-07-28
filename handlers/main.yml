@@ -4,3 +4,10 @@
     name: "{{ haproxy_name }}"
     state: started
     restart: true
+
+- name: Reload HAProxy
+  docker_container:
+    name: "{{ haproxy_name }}"
+    state: started
+    force_kill: true
+    kill_signal: HUP

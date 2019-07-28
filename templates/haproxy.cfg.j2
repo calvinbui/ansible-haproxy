@@ -1,25 +1,14 @@
+# This is a default haproxy config, for the initial start of haproxy when there are no containers around or docker-gen is starting
 global
-    log 127.0.0.1 local0
-    maxconn 4096
+	daemon
+	maxconn 1024
+	pidfile /var/run/haproxy.pid
 
 defaults
-    log global
-    mode http
-    option httplog
-    option dontlognull
-    retries 3
-    redispatch
-    maxconn 2000
-    contimeout 5000
-    clitimeout 50000
-    srvtimeout 50000
+	balance roundrobin
+	timeout client 60s
+	timeout connect 60s
+	timeout server 60s
 
-frontend http-in
-    bind *:80
-    acl myapp-frontend hdr(host) -i mydomain.com
-    use_backend myapp-backend if myapp-frontend
-
-backend myapp-backend
-    balance roundrobin
-    option http-server-close
-    server myapp-server-1 myapp-server-hostname:80 check
+frontend http
+	bind :80
