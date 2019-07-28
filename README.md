@@ -1,8 +1,11 @@
 [![Build Status](https://travis-ci.com/calvinbui/ansible-haproxy-docker.svg?branch=master)](https://travis-ci.com/calvinbui/ansible-haproxy-docker)
+![GitHub release](https://img.shields.io/github/release/calvinbui/ansible-haproxy-docker.svg)
+![Ansible Quality Score](https://img.shields.io/ansible/quality/42347.svg)
+![Ansible Role](https://img.shields.io/ansible/role/d/42347.svg)
 
-# Ansible HAProxy in Docker
+# Ansible HAProxy
 
-Run HAProxy in a Docker container. This role's purpose is for simple proxying.
+HAProxy in Docker
 
 ##  Requirements
 
@@ -10,13 +13,21 @@ N/A
 
 ## Role Variables
 
-`haproxy_docker_image_tag`: Tag found at https://hub.docker.com/_/haproxy/
-`haproxy_docker_folder`: Folder to put the configuration file
-`haproxy_docker_config`: Configuration options for backend and frontend. Only 80 and 443 frontend ports supported.
+`haproxy_name`: Name of container
+
+`haproxy_image`: Docker image to use
+
+`haproxy_ports`: List of ports to expose
+
+`haproxy_config_directory`: Directory to HAProxy config
+
+`haproxy_config_template`: Config template to use. Can be replaced with one in your playbook.
+
+`haproxy_docker_additional_options`: [Additional parameters](https://docs.ansible.com/ansible/latest/modules/docker_container_module.html) to add to docker container
 
 ## Dependencies
 
-- Docker
+N/A
 
 ## Example Playbook
 
@@ -24,8 +35,7 @@ N/A
 - hosts: servers
   become: true
   roles:
-    - role: calvinbui.ansible_docker
-    - role: calvinbui.ansible_haproxy_docker
+   - role: calvinbui.ansible_haproxy_docker
 ```
 
 ## License

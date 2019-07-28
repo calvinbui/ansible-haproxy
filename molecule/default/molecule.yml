@@ -5,13 +5,22 @@ driver:
   name: docker
 lint:
   name: yamllint
+  options:
+    config-data:
+      line-length: disable
 platforms:
-  - name: ansible-haproxy-docker
-    image: ubuntu:${UBUNTU_IMAGE_TAG:-latest}
+  - name: ansible-collabora-docker
+    image: geerlingguy/docker-ubuntu1804-ansible
+    command: ""
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /tmp:/tmp
+    privileged: true
+    pre_build_image: true
 provisioner:
   name: ansible
   options:
-    v: false
+    v: true
   lint:
     name: ansible-lint
 scenario:
