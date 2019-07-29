@@ -26,3 +26,15 @@
 - name: Create HAproxy container
   docker_container: "{{ haproxy_container_parameters | combine(haproxy_docker_additional_options) }}"
   register: haproxy_container
+
+- name: Create haproxy-reload command
+  template:
+    src: haproxy-reload.j2
+    dest: /usr/local/bin/haproxy-reload
+    mode: '0755'
+
+- name: Create haproxy-restart command
+  template:
+    src: haproxy-restart.j2
+    dest: /usr/local/bin/haproxy-restart
+    mode: '0755'
