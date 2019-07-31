@@ -38,3 +38,9 @@
     src: haproxy-restart.j2
     dest: /usr/local/bin/haproxy-restart
     mode: '0755'
+
+- name: Create haproxy-edit command
+  template:
+    src: haproxy-edit.j2
+    dest: /usr/local/bin/haproxy-edit
+    mode: '0755'
